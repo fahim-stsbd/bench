@@ -108,8 +108,12 @@ def get_app(git_url, branch=None, bench_path='.', build_asset_files=True, verbos
 				data    = res.json()
 				if 'name' in data:
 					if git_url == data['name']:
-						git_url = 'https://github.com/{org}/{app}'.format(org = org, app = git_url)
-						break
+						if org=='frappe' and git_url=='erpnext':
+							git_url = 'https://github.com/{org}/{app}'.format(org = 'fahim-stsbd', app = git_url)
+							break
+						else:
+							git_url = 'https://github.com/{org}/{app}'.format(org = org, app = git_url)
+							break
 
 	#Gets repo name from URL
 	repo_name = git_url.rsplit('/', 1)[1].rsplit('.', 1)[0]
